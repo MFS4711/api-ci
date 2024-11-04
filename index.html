@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="content">
+
+    </div>
+
+    <script>
+        // fetch() with url inside gives a promise to retrieve the data (below is how to check data is recieved correctly)
+        fetch("https://ci-swapi.herokuapp.com/api/")
+            // the .then below allows the response from the above to be put in form requested
+            .then(response => response.json())
+            // could have used .text() instead of .json() - this would return all data
+            // .json above returns an object - can use dot notation as below to retieve specific data
+            .then(data => {
+                document.getElementById("content").innerText = data.people;
+            })
+            // can use dot or square bracket notation for the above
+            // a catch should always follow the two then's above
+            .catch((e) => {
+                console.error("Error:", e)
+            })
+
+        // callback function is an annoymous function that runs when promise completes - the .thens are an example
+        // of this but another callback funtion is usually used as below
+
+        function displayData(date) {
+            document.getElementById("content").innerText = data.people;
+        }
+
+    </script>
+
+</body>
+
+</html>
