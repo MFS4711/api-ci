@@ -17,11 +17,17 @@
             // the .then below allows the response from the above to be put in form requested
             .then(response => response.json())
             // could have used .text() instead of .json() - this would return all data
-            // .json above returns an object - can use dot notation as below to retieve specific data
-            .then(data => {
-                document.getElementById("content").innerText = data.people;
-            })
-            // can use dot or square bracket notation for the above
+
+            // // .json above returns an object - can use dot notation as below to retieve specific data
+            // .then(data => {
+            //     document.getElementById("content").innerText = data.people;
+            // })
+            // // can use dot or square bracket notation for the above
+
+            // better to put the above code to call the callback function
+            // this separates retrieving data and displaying it
+            .then(data => displayData(data))
+
             // a catch should always follow the two then's above
             .catch((e) => {
                 console.error("Error:", e)
@@ -30,7 +36,7 @@
         // callback function is an annoymous function that runs when promise completes - the .thens are an example
         // of this but another callback funtion is usually used as below
 
-        function displayData(date) {
+        function displayData(data) {
             document.getElementById("content").innerText = data.people;
         }
 
